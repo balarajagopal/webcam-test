@@ -64,27 +64,42 @@ function populateCameraList() {
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-async function setCamera() {
+async function sleeper(ms) {
+  return function(x) {
+    return new Promise(resolve => setTimeout(() => resolve(x), ms));
+  };
+}
+
+function setCamera() {
 	  if (currentStream) {
     		currentStream.getTracks().forEach(track => track.stop());
     
-    		// Use the delay function
-    		await delay(500); // 300ms delay
-  	}	
+    		setTimeout(() => {
+		// Code to run later goes here.
+		startStream();
+		}, 1000); // Time till execution, in milliseconds.
+  	}
+	else {
+		startStream();
+	}
 	
+
+	
+}
+
+function startStream(){
 	let constraints = {
 		video: {
 			deviceId: selectedCamera
 		}
 	};
 
+	navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+		currentStream = stream;
+		let video = document.querySelector('#webcam-output');
+		video.srcObject = stream;
+		video.play();
+	});
 	
 
-	var stream = await navigator.mediaDevices.getUserMedia(constraints);
-	
-	currentStream = stream;
-	let video = document.querySelector('#webcam-output');
-	video.srcObject = stream;
-	video.play();
-	
 }
