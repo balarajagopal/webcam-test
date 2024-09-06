@@ -9,7 +9,7 @@ if (hasGetUserMedia()) {
 }
 
 var selectedCamera = '';
-var currentStream = '';
+var currentStream = null;
 
 function askForPermission(){
     let constraints = { video : true };
@@ -65,8 +65,10 @@ function populateCameraList() {
 function setCamera() {
 	if (currentStream) {
   		currentStream.getTracks().forEach(track => track.stop());
+		await new Promise(resolve => setTimeout(resolve, 300)); // 300ms delay
 		currentStream = null;
 	}
+	
 	let constraints = {
 		video: {
 			deviceId: selectedCamera
