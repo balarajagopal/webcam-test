@@ -69,7 +69,7 @@ async function setCamera() {
     		currentStream.getTracks().forEach(track => track.stop());
     
     		// Use the delay function
-    		await delay(300); // 300ms delay
+    		await delay(500); // 300ms delay
   	}	
 	
 	let constraints = {
