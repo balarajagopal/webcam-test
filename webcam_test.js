@@ -62,12 +62,15 @@ function populateCameraList() {
 	});
 }
 
-function setCamera() {
-	if (currentStream) {
-  		currentStream.getTracks().forEach(track => track.stop());
-		await new Promise(resolve => setTimeout(resolve, 300)); // 300ms delay
-		currentStream = null;
-	}
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+async function setCamera() {
+	  if (currentStream) {
+    		currentStream.getTracks().forEach(track => track.stop());
+    
+    		// Use the delay function
+    		await delay(300); // 300ms delay
+  	}	
 	
 	let constraints = {
 		video: {
@@ -77,10 +80,11 @@ function setCamera() {
 
 	
 
-	navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-		currentStream = stream;
-		let video = document.querySelector('#webcam-output');
-		video.srcObject = stream;
-		video.play();
-	});
+	var stream = await navigator.mediaDevices.getUserMedia(constraints);
+	
+	currentStream = stream;
+	let video = document.querySelector('#webcam-output');
+	video.srcObject = stream;
+	video.play();
+	
 }
