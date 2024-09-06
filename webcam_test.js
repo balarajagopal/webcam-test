@@ -75,9 +75,9 @@ function setCamera() {
     		currentStream.getTracks().forEach(track => track.stop());
     
     		setTimeout(() => {
-		// Code to run later goes here.
+		
 		startStream();
-		}, 1000); // Time till execution, in milliseconds.
+		}, 5000); // Time till execution, in milliseconds.
   	}
 	else {
 		startStream();
