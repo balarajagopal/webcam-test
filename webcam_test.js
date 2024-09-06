@@ -9,6 +9,7 @@ if (hasGetUserMedia()) {
 }
 
 var selectedCamera = '';
+var currentStream = '';
 
 function askForPermission(){
     let constraints = { video : true };
@@ -62,13 +63,20 @@ function populateCameraList() {
 }
 
 function setCamera() {
+	if (currentStream) {
+  		currentStream.getTracks().forEach(track => track.stop());
+		currentStream = null;
+	}
 	let constraints = {
 		video: {
 			deviceId: selectedCamera
 		}
 	};
 
+	
+
 	navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+		currentStream = stream;
 		let video = document.querySelector('#webcam-output');
 		video.srcObject = stream;
 		video.play();
