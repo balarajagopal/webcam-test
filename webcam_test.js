@@ -32,12 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			let new_selection = document.querySelector('#camera-select').children[
 				document.querySelector('#camera-select').selectedIndex
 			].value;
-			selectedCamera = new_selection;
-			console.log(selectedCamera);
-			setCamera();
+			if (value != "-") {
+				selectedCamera = new_selection;
+				console.log(selectedCamera);
+				setCamera();
+			}
 	    };
-
-	//     populateCameraList();
 });
 
 function populateCameraList() {
@@ -47,7 +47,11 @@ function populateCameraList() {
 		console.log(deviceList);
 
 		selectedCamera = deviceList.filter((x) => x.kind == 'videoinput')[0].deviceId;
-		setCamera();
+
+		let initItem = document.createElement('option');
+		initItem.value = "-";
+		initItem.innerHTML = "-- Select a camera --";
+		document.querySelector('#camera-select').appendChild(initItem);
 
 		deviceList.forEach((device) => {
 			if (device.kind == 'videoinput') {
@@ -59,6 +63,8 @@ function populateCameraList() {
 				document.querySelector('#camera-select').appendChild(item);
 			}
 		});
+
+		setCamera();
 	});
 }
 
