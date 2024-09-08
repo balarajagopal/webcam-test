@@ -94,7 +94,6 @@ function stopStream(){
   	}
 
 	let video = document.querySelector('#webcam-output');
-	video.srcObject = stream;
 	video.pause();
 }
 
