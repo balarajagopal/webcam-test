@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			let new_selection = document.querySelector('#camera-select').children[
 				document.querySelector('#camera-select').selectedIndex
 			].value;
-			if (value != "-") {
+			if (new_selection != "-") {
 				selectedCamera = new_selection;
 				console.log(selectedCamera);
 				setCamera();
