@@ -90,10 +90,13 @@ function setCamera() {
 function stopStream(){
 	let video = document.querySelector('#webcam-output');
 	video.pause();
-	if (currentStream) {
-    		currentStream.getTracks().forEach(track => track.stop());
-    		currentStream = null;
+	var str = video.srcObject;
+	
+	if (str) {
+    		str.getTracks().forEach(track => track.stop());
+    		str = null;
   	}
+	video.srcObject = null;
 }
 
 function startStream(){
