@@ -73,11 +73,11 @@ async function sleeper(ms) {
 function setCamera() {
 	  if (currentStream) {
     		currentStream.getTracks().forEach(track => track.stop());
-    
+    		currentStream = null;
     		setTimeout(() => {
 		
 		startStream();
-		}, 5000); // Time till execution, in milliseconds.
+		}, 2000); // Time till execution, in milliseconds.
   	}
 	else {
 		startStream();
@@ -85,6 +85,13 @@ function setCamera() {
 	
 
 	
+}
+
+function stopStream(){
+	if (currentStream) {
+    		currentStream.getTracks().forEach(track => track.stop());
+    		currentStream = null;
+  	}
 }
 
 function startStream(){
