@@ -92,6 +92,10 @@ function stopStream(){
     		currentStream.getTracks().forEach(track => track.stop());
     		currentStream = null;
   	}
+
+	let video = document.querySelector('#webcam-output');
+	video.srcObject = stream;
+	video.pause();
 }
 
 function startStream(){
