@@ -1,4 +1,4 @@
-#webcam-output, #camera-select{
+#webcam-output, #camera-select, #close-stream{
     display: block;
     margin: auto;
 }
