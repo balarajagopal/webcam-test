@@ -64,7 +64,7 @@ function populateCameraList() {
 			}
 		});
 
-		setCamera();
+		//setCamera();
 	});
 }
 
