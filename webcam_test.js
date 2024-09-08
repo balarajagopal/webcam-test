@@ -88,13 +88,12 @@ function setCamera() {
 }
 
 function stopStream(){
+	let video = document.querySelector('#webcam-output');
+	video.pause();
 	if (currentStream) {
     		currentStream.getTracks().forEach(track => track.stop());
     		currentStream = null;
   	}
-
-	let video = document.querySelector('#webcam-output');
-	video.pause();
 }
 
 function startStream(){
