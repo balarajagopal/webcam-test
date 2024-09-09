@@ -27,19 +27,19 @@ function askForPermission(){
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    //askForPermission();
+    	askForPermission();
 
-		document.querySelector('#camera-select').onchange = () => {
-			// console.log("New selection!")
-			let new_selection = document.querySelector('#camera-select').children[
-				document.querySelector('#camera-select').selectedIndex
-			].value;
-			if (new_selection != "-") {
-				selectedCamera = new_selection;
-				console.log(selectedCamera);
-				setCamera();
-			}
-	    };
+	document.querySelector('#camera-select').onchange = () => {
+		// console.log("New selection!")
+		let new_selection = document.querySelector('#camera-select').children[
+			document.querySelector('#camera-select').selectedIndex
+		].value;
+		if (new_selection != "-") {
+			selectedCamera = new_selection;
+			console.log(selectedCamera);
+			setCamera();
+		}
+	};
 });
 
 function populateCameraList() {
@@ -48,19 +48,16 @@ function populateCameraList() {
 	navigator.mediaDevices.enumerateDevices().then((deviceList) => {
 		console.log(deviceList);
 
-		
-
 		let initItem = document.createElement('option');
 		initItem.value = "-";
 		initItem.innerHTML = "-- Select a camera --";
 		document.querySelector('#camera-select').appendChild(initItem);
-
+		var firstDevice = false;
 		deviceList.forEach((device) => {
 			if ( device.kind === 'videoinput' && 
       				/(back|rear)/i.test(device.label)) {
 				console.log(device.label);
 				let item = document.createElement('option');
-				// item.setAttribute("value", device.label);
 				item.value = device.deviceId;
 				item.innerHTML = device.label;
 				document.querySelector('#camera-select').appendChild(item);
