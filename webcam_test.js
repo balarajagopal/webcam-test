@@ -66,7 +66,7 @@ function populateCameraList() {
 
 		if (document.querySelector('#camera-select').options.length > 1){
 			document.querySelector('#camera-select').selectedIndex = 1;
-			document.querySelector('#camera-select').clientLeft;
+			document.querySelector('#camera-select').dispatchEvent(new Event('change'));
 		}
 	});
 }
