@@ -12,7 +12,9 @@ var selectedCamera = '';
 var currentStream = null;
 
 function askForPermission(){
-    let constraints = { video : true };
+    let constraints = { video: {
+    			facingMode: 'environment'
+  			} };
     navigator.mediaDevices.getUserMedia(constraints)
     .then(() => {
         // alert("Permission Granted!");
@@ -46,7 +48,7 @@ function populateCameraList() {
 	navigator.mediaDevices.enumerateDevices().then((deviceList) => {
 		console.log(deviceList);
 
-		selectedCamera = deviceList.filter((x) => x.kind == 'videoinput')[0].deviceId;
+		//selectedCamera = deviceList.filter((x) => x.kind == 'videoinput')[0].deviceId;
 
 		let initItem = document.createElement('option');
 		initItem.value = "-";
@@ -54,7 +56,7 @@ function populateCameraList() {
 		document.querySelector('#camera-select').appendChild(initItem);
 
 		deviceList.forEach((device) => {
-			if (device.kind == 'videoinput') {
+			if (device.kind === 'videoinput' && device.facingMode === 'environment') {
 				console.log(device.label);
 				let item = document.createElement('option');
 				// item.setAttribute("value", device.label);
@@ -68,13 +70,6 @@ function populateCameraList() {
 	});
 }
 
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-async function sleeper(ms) {
-  return function(x) {
-    return new Promise(resolve => setTimeout(() => resolve(x), ms));
-  };
-}
 
 function setCamera() {
 	  if (currentStream) {
