@@ -48,7 +48,7 @@ function populateCameraList() {
 	navigator.mediaDevices.enumerateDevices().then((deviceList) => {
 		console.log(deviceList);
 
-		//selectedCamera = deviceList.filter((x) => x.kind == 'videoinput')[0].deviceId;
+		
 
 		let initItem = document.createElement('option');
 		initItem.value = "-";
@@ -56,7 +56,8 @@ function populateCameraList() {
 		document.querySelector('#camera-select').appendChild(initItem);
 
 		deviceList.forEach((device) => {
-			if (device.kind === 'videoinput' && device.facingMode === 'environment') {
+			if ( device.kind === 'videoinput' && 
+      				/(back|rear)/i.test(device.label)) {
 				console.log(device.label);
 				let item = document.createElement('option');
 				// item.setAttribute("value", device.label);
