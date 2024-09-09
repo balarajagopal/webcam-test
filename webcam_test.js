@@ -25,7 +25,7 @@ function askForPermission(){
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    askForPermission();
+    //askForPermission();
 
 		document.querySelector('#camera-select').onchange = () => {
 			// console.log("New selection!")
