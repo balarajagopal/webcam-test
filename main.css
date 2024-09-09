@@ -3,7 +3,7 @@
     margin: auto;
 }
 
-#close-stream{
+#close-stream, #get-cameras{
     display: block;
     margin: auto;
     text-align: center;
