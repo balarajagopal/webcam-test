@@ -79,7 +79,7 @@ function setCamera() {
     		setTimeout(() => {
 		
 		startStream();
-		}, 2000); // Time till execution, in milliseconds.
+		}, 300); // Time till execution, in milliseconds.
   	}
 	else {
 		startStream();
